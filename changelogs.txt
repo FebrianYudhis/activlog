@@ -3,3 +3,6 @@
 
 #1.0.1
 - Membuat Relasi
+
+#1.0.2
+- Menginstall Laravel/UI
