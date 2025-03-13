@@ -6,3 +6,6 @@
 
 #1.0.2
 - Menginstall Laravel/UI
+
+#1.0.3
+- Memperbaiki Halaman Daftar Aplikasi
