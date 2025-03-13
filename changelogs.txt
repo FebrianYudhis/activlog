@@ -1,2 +1,5 @@
 #1.0.0
 - Membuat Basis Data
+
+#1.0.1
+- Membuat Relasi
