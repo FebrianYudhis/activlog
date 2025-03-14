@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'showLoginForm']);
@@ -15,5 +16,5 @@ Route::group([], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('app', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('app', HomeController::class)->name('app');
 });

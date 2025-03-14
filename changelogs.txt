@@ -12,3 +12,9 @@
 
 #1.0.4
 - Memperbaiki Halaman Masuk Aplikasi
+
+#1.0.5
+- Memperbaiki Kode
+
+#1.0.6
+- Memperbaiki Kode
