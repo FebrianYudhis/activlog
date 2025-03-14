@@ -11,6 +11,10 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view("home");
+        $data = [
+            'judul' => 'Beranda'
+        ];
+
+        return view("home", $data);
     }
 }
