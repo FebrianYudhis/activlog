@@ -30,3 +30,6 @@
 
 #1.0.10
 - Memperbarui Halaman Masuk Aplikasi
+
+#1.0.11
+- Memperbarui Halaman Daftar Aplikasi

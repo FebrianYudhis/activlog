@@ -16,7 +16,7 @@
                         <form class="mb-6" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-6">
-                                <label for="username" class="form-label">Username</label>
+                                <label class="form-label" for="username">Username</label>
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="username" name="username" placeholder="Masukkan Username Anda"
                                     value="{{ old('username') }}" required />
@@ -24,12 +24,10 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="mb-6 form-password-toggle">
+                            <div class="mb-6">
                                 <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    required />
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="password" name="password" placeholder="********" required />
                                 @error('password')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
