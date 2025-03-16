@@ -21,3 +21,6 @@
 
 #1.0.7
 - Menyelesaikan Tampilan Halaman Home
+
+#1.0.8
+- Memperbarui Tampilan Halaman Home

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" />
     <script src="{{ asset('assets/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-2.2.2/datatables.min.css" rel="stylesheet" integrity="sha384-2vMryTPZxTZDZ3GnMBDVQV8OtmoutdrfJxnDTg0bVam9mZhi7Zr3J1+lkVFRr71f" crossorigin="anonymous">
 </head>
 
 <body>
@@ -69,7 +70,21 @@
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="layout-demo-wrapper">
-                            <h1>Hello World</h1>
+                            <div class="card">
+                                <div class="card-header">List Tanggal Logbook</div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-striped" id="tabelListTanggal">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <th>Jadwal Dinas</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="content-backdrop fade"></div>
@@ -81,6 +96,37 @@
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/popper.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.2.2/datatables.min.js" integrity="sha384-2Ul6oqy3mEjM7dBJzKOck1Qb/mzlO+k/0BQv3D3C7u+Ri9+7OBINGa24AeOv5rgu" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tabelListTanggal').DataTable({
+                paging: true,
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('app') }}",
+                columns: [{
+                        data: 'date',
+                        name: 'date',
+                    },
+                    {
+                        data: 'schedule.name',
+                        name: 'schedule.name',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                order: [
+                    [0, 'desc']
+                ]
+            });
+        });
+    </script>
 </body>
 
 </html>

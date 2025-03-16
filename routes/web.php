@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\{LoginController, RegisterController};
+use App\Http\Controllers\{HomeController, LogbookController};
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LoginController::class, 'showLoginForm']);
+Route::redirect('/', '/app');
 
 Route::group([], function () {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -17,4 +16,5 @@ Route::group([], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('app', HomeController::class)->name('app');
+    Route::get('app/logbook/{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
 });
