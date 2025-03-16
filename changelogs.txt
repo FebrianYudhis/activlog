@@ -27,3 +27,6 @@
 
 #1.0.9
 - Membuat Layouts
+
+#1.0.10
+- Memperbarui Halaman Masuk Aplikasi

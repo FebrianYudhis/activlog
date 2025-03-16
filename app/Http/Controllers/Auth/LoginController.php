@@ -42,4 +42,11 @@ class LoginController extends Controller
     {
         return 'username';
     }
+
+    public function showLoginForm()
+    {
+        $data = ['judul' => 'Login'];
+
+        return view('auth.login', $data);
+    }
 }
