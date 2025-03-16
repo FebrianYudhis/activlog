@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\{LoginController, RegisterController};
 use App\Http\Controllers\{HomeController, LogbookController};
-use App\Http\Middleware\CheckIsValid;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/app');
