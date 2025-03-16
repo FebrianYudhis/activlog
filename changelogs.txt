@@ -33,3 +33,6 @@
 
 #1.0.11
 - Memperbarui Halaman Daftar Aplikasi
+
+#1.0.12
+- Menambahkan Fitur Hapus Tanggal Logbook

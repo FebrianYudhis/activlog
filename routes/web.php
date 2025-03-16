@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\{LoginController, RegisterController};
 use App\Http\Controllers\{HomeController, LogbookController};
+use App\Http\Middleware\CheckIsValid;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/app');
@@ -17,4 +18,5 @@ Route::group([], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('app', HomeController::class)->name('app');
     Route::get('app/logbook/{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
+    Route::delete('app/logbook/hapus/{date_schedule}', [LogbookController::class, 'hapus'])->name('logbook.hapus');
 });
