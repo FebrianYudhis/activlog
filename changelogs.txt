@@ -24,3 +24,6 @@
 
 #1.0.8
 - Memperbarui Tampilan Halaman Home
+
+#1.0.9
+- Membuat Layouts
