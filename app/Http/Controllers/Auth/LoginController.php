@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -48,5 +50,23 @@ class LoginController extends Controller
         $data = ['judul' => 'Login'];
 
         return view('auth.login', $data);
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        Alert::success('Berhasil', 'Anda Berhasil Keluar !');
+        return redirect()->route('login');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        Alert::success('Berhasil', 'Anda Berhasil Masuk Sebagai ' . $user->name);
+        return redirect()->route('app');
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        Alert::error('Gagal', 'Username atau Password Anda Salah !');
+        return redirect()->route('login');
     }
 }

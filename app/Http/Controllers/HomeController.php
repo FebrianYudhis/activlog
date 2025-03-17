@@ -28,14 +28,18 @@ class HomeController extends Controller
                     $sekarang = Carbon::now('Asia/Jakarta');
                     $batasAkhir = Carbon::parse($data['due_date'], 'Asia/Jakarta');
 
-                    $button = "<a href='" . route('logbook', [$data['id']]) . "' class='btn btn-primary w-100 mt-1'>Lihat</a>";
+                    $button = "<a href='" . route('logbook', [$data['id']]) . "' class='btn btn-primary w-100'>Lihat</a>";
                     if ($sekarang->lt($batasAkhir)) {
-                        $button = $button . "<form action='" . route('logbook.hapus', [$data['id']]) . "' class='mt-1 w-100' method='POST'> " . csrf_field() . method_field('delete') . " <button type='submit' class='btn btn-danger w-100'>Hapus</button></form>";
+                        $button = $button . "<a href='" . route('logbook.hapus', [$data['id']]) . "' class='btn btn-danger w-100 mt-1' data-confirm-delete='true'>Hapus</a>";
                     }
                     return $button;
                 })->rawColumns(['aksi'])
                 ->toJson();
         }
+
+        $title = 'Hapus Data !';
+        $text = "Apakah Kamu Yakin Ingin Menghapus Data Ini ?";
+        confirmDelete($title, $text);
 
         return view("home", $data);
     }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -79,5 +81,11 @@ class RegisterController extends Controller
         $data = ['judul' => 'Daftar'];
 
         return view('auth.register', $data);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        Alert::success('Berhasil', 'Anda Berhasil Mendaftar dan Masuk Sebagai ' . $user->name);
+        return redirect()->route('app');
     }
 }

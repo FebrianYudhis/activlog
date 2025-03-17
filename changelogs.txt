@@ -39,3 +39,6 @@
 
 #1.0.13
 - Menginstall Sweetalert 2
+
+#1.0.14
+- Menambahkan Fitur Sweetalert 2 ke Sistem
