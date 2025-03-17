@@ -42,3 +42,7 @@
 
 #1.0.14
 - Menambahkan Fitur Sweetalert 2 ke Sistem
+
+#1.0.15
+- Menambahkan Parameter di .env
+- Menambah Bahasa Indonesia
