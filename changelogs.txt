@@ -58,3 +58,6 @@
 
 #1.0.19
 - Menambahkan Fitur Minta Hapus Pada DataSchedule
+
+#1.0.20
+- Mengganti Timezone
