@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DateSchedule;
+use App\Models\Note;
 use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,7 +14,12 @@ class LogbookController extends Controller
 {
     public function index(DateSchedule $dateSchedule)
     {
-        return $dateSchedule->load(['tasks', 'schedule', 'note']);
+        $data = [
+            'judul' => 'Isi Logbook',
+            'dataLogbook' => $dateSchedule->load(['tasks', 'schedule', 'note'])
+        ];
+
+        return view('form.task.index', $data);
     }
 
     public function hapus(DateSchedule $dateSchedule)
@@ -91,5 +97,18 @@ class LogbookController extends Controller
         }
 
         return redirect()->route('app');
+    }
+
+    public function updateCatatan(Note $note, Request $request)
+    {
+        $validated = $request->validate([
+            'catatan' => ['required', 'string'],
+        ]);
+
+        $note->update(['note' => $validated['catatan']]);
+
+        Alert::success('Berhasil', 'Catatan Berhasil Diubah !');
+
+        return redirect()->back();
     }
 }

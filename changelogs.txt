@@ -64,3 +64,6 @@
 
 #1.1.0
 - Menambahkan Menu Tambah Tanggal Logbook
+
+#1.1.1
+- Menampilkan Catatan Pada Isi Logbook
