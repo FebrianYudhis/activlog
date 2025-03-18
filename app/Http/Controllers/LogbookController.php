@@ -6,6 +6,7 @@ use App\Models\DateSchedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LogbookController extends Controller
 {
@@ -21,11 +22,14 @@ class LogbookController extends Controller
 
         if ($dateSchedule->user->id == Auth::user()->id and $sekarang->lt($batasAkhir)) {
             if ($dateSchedule->delete()) {
+                Alert::success('Berhasil', 'Data Berhasil Dihapus !');
                 return redirect()->route('app');
             } else {
+                Alert::error('Gagal', 'Data Gagal Dihapus !');
                 return redirect()->route('app');
             }
         } else {
+            Alert::error('Gagal', 'Anda Tidak Berhak Menghapus Data !');
             return redirect()->route('app');
         }
     }
