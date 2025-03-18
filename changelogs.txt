@@ -80,3 +80,6 @@
 
 #1.1.5
 - Merapikan Routing
+
+#1.1.6
+- Menambahkan Informasi Pengeditan Logbook

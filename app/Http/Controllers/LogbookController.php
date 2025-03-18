@@ -22,6 +22,7 @@ class LogbookController extends Controller
             'judul' => 'Isi Logbook',
             'dataLogbook' => $dateSchedule->load(['tasks', 'schedule', 'note']),
             'isAllowed' => $sekarang->lt($batasAkhir),
+            'batasAkhir' => $batasAkhir,
         ];
 
         $title = 'Hapus Data !';

@@ -18,6 +18,15 @@
 @endpush
 
 @section('konten')
+    @if (!$isAllowed)
+        <div class="alert alert-danger mb-6" role="alert">
+            Anda Sudah Tidak Dapat Mengedit Logbook Ini !
+        </div>
+    @else
+        <div class="alert alert-info mb-6" role="alert">
+            Anda Dapat Mengedit Logbook Ini Sampai {{ $batasAkhir }}
+        </div>
+    @endif
     <div class="card mb-6">
         <div class="card-header">Catatan</div>
         <div class="card-body">
