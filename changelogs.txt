@@ -67,3 +67,7 @@
 
 #1.1.1
 - Menampilkan Catatan Pada Isi Logbook
+
+#1.1.2
+- Membuat Task Factory
+- Membuat List Tugas dan Fitur Hapus Tugas

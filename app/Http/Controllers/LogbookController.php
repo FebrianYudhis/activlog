@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DateSchedule;
 use App\Models\Note;
 use App\Models\Schedule;
+use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,10 @@ class LogbookController extends Controller
             'judul' => 'Isi Logbook',
             'dataLogbook' => $dateSchedule->load(['tasks', 'schedule', 'note'])
         ];
+
+        $title = 'Hapus Data !';
+        $text = "Apakah Kamu Yakin Ingin Menghapus Data Ini ?";
+        confirmDelete($title, $text);
 
         return view('form.task.index', $data);
     }
@@ -108,6 +113,15 @@ class LogbookController extends Controller
         $note->update(['note' => $validated['catatan']]);
 
         Alert::success('Berhasil', 'Catatan Berhasil Diubah !');
+
+        return redirect()->back();
+    }
+
+    public function hapusTugas(Task $task)
+    {
+        $task->delete();
+
+        Alert::success('Berhasil', 'Tugas Berhasil Dihapus !');
 
         return redirect()->back();
     }

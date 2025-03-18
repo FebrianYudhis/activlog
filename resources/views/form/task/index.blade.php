@@ -9,10 +9,16 @@
     <script src="https://cdn.datatables.net/v/dt/dt-2.2.2/datatables.min.js"
         integrity="sha384-2Ul6oqy3mEjM7dBJzKOck1Qb/mzlO+k/0BQv3D3C7u+Ri9+7OBINGa24AeOv5rgu"
         crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tabelListTugas').DataTable({});
+        });
+    </script>
 @endpush
 
 @section('konten')
-    <div class="card">
+    <div class="card mb-6">
         <div class="card-header">Catatan</div>
         <div class="card-body">
             <form method="POST" action="{{ route('logbook.catatan', $dataLogbook->note->id) }}">
@@ -27,6 +33,33 @@
                 </div>
                 <button type="submit" class="btn btn-warning w-100">Simpan</button>
             </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Tugas</div>
+        <div class="card-body">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="tabelListTugas">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Tugas</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dataLogbook->tasks as $task)
+                                <tr>
+                                    <td>{{ $task->task }}</td>
+                                    <td><a href="{{ route('logbook.tugas.hapus', [$task->id]) }}" class="btn btn-danger w-100"
+                                            data-confirm-delete="true">Hapus</a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
