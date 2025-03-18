@@ -148,4 +148,41 @@ class LogbookController extends Controller
 
         return redirect()->back();
     }
+
+    public function tambahTaskForm(DateSchedule $dateSchedule)
+    {
+        $data = [
+            'judul' => 'Tambah Tugas',
+            'dataLogbook' => $dateSchedule,
+        ];
+
+        return view('form.task.tambah', $data);
+    }
+
+    public function tambahTask(DateSchedule $dateSchedule, Request $request)
+    {
+        $validated = $request->validate([
+            'tugas' => ['required', 'string'],
+        ]);
+
+        $sekarang = Carbon::now('Asia/Jakarta');
+        $batasAkhir = Carbon::parse($dateSchedule->due_date, 'Asia/Jakarta');
+
+        if ($dateSchedule->user->id == Auth::user()->id and $sekarang->lt($batasAkhir)) {
+            $dataTugas = Task::create([
+                'date_schedule_id' => $dateSchedule->id,
+                'task' => $validated['tugas'],
+            ]);
+
+            if ($dataTugas) {
+                Alert::success('Berhasil', 'Tugas Berhasil Ditambahkan !');
+            } else {
+                Alert::error('Gagal', 'Tugas Gagal Ditambahkan !');
+            }
+        } else {
+            Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
+        }
+
+        return redirect()->route('logbook', $dateSchedule->id);
+    }
 }

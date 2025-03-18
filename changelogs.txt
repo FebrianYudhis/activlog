@@ -83,3 +83,7 @@
 
 #1.1.6
 - Menambahkan Informasi Pengeditan Logbook
+
+#1.2.0
+- Menyelesaikan Menu Tambah Tugas
+===STABLE RELEASE===

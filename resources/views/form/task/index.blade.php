@@ -48,32 +48,36 @@
     <div class="card">
         <div class="card-header">Tugas</div>
         <div class="card-body">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped" id="tabelListTugas">
-                        <thead class="table-dark">
+            @if ($isAllowed)
+                <a href="{{ route('logbook.task.tambah', [$dataLogbook->id]) }}" class="btn btn-primary w-100 mb-4">Tambah
+                    Data</a>
+            @else
+                <button class="btn btn-primary w-100 mb-4" disabled>Tambah Data</button>
+            @endif
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="tabelListTugas">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Tugas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataLogbook->tasks as $task)
                             <tr>
-                                <th>Tugas</th>
-                                <th>Aksi</th>
+                                <td>{{ $task->task }}</td>
+                                <td>
+                                    @if ($isAllowed)
+                                        <a href="{{ route('logbook.tugas.hapus', [$task->id]) }}" class="btn btn-danger w-100"
+                                            data-confirm-delete="true">Hapus</a>
+                                    @else
+                                        <button class="btn btn-danger w-100" disabled>Hapus</button>
+                                    @endif
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($dataLogbook->tasks as $task)
-                                <tr>
-                                    <td>{{ $task->task }}</td>
-                                    <td>
-                                        @if ($isAllowed)
-                                            <a href="{{ route('logbook.tugas.hapus', [$task->id]) }}" class="btn btn-danger w-100"
-                                                data-confirm-delete="true">Hapus</a>
-                                        @else
-                                            <button class="btn btn-danger w-100" disabled>Hapus</button>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

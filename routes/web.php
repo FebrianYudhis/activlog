@@ -27,5 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('task/{task}/hapus', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
 
         Route::get('{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
+        Route::get('{date_schedule}/task/tambah', [LogbookController::class, 'tambahTaskForm'])->name('logbook.task.tambah');
+        Route::post('{date_schedule}/task/tambah', [LogbookController::class, 'tambahTask']);
     });
 });
