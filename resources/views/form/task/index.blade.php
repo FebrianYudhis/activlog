@@ -26,12 +26,12 @@
                 @method('PATCH')
                 <div class="mb-2">
                     <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan"
-                        rows="3">{{ $dataLogbook->note->note }}</textarea>
+                        rows="3" @if (!$isAllowed) disabled @endif>{{ $dataLogbook->note->note }}</textarea>
                     @error('catatan')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-warning w-100">Simpan</button>
+                <button type="submit" class="btn btn-warning w-100" @if (!$isAllowed) disabled @endif>Simpan</button>
             </form>
         </div>
     </div>
@@ -52,8 +52,14 @@
                             @foreach ($dataLogbook->tasks as $task)
                                 <tr>
                                     <td>{{ $task->task }}</td>
-                                    <td><a href="{{ route('logbook.tugas.hapus', [$task->id]) }}" class="btn btn-danger w-100"
-                                            data-confirm-delete="true">Hapus</a></td>
+                                    <td>
+                                        @if ($isAllowed)
+                                            <a href="{{ route('logbook.tugas.hapus', [$task->id]) }}" class="btn btn-danger w-100"
+                                                data-confirm-delete="true">Hapus</a>
+                                        @else
+                                            <button class="btn btn-danger w-100" disabled>Hapus</button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -15,9 +15,13 @@ class LogbookController extends Controller
 {
     public function index(DateSchedule $dateSchedule)
     {
+        $sekarang = Carbon::now('Asia/Jakarta');
+        $batasAkhir = Carbon::parse($dateSchedule->due_date, 'Asia/Jakarta');
+
         $data = [
             'judul' => 'Isi Logbook',
-            'dataLogbook' => $dateSchedule->load(['tasks', 'schedule', 'note'])
+            'dataLogbook' => $dateSchedule->load(['tasks', 'schedule', 'note']),
+            'isAllowed' => $sekarang->lt($batasAkhir),
         ];
 
         $title = 'Hapus Data !';
