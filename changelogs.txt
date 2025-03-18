@@ -52,3 +52,6 @@
 
 #1.0.17
 - Menambahkan DateSchedule Observer Agar Table Note Otomatis Terisi Apabila Ada DateSchedule Baru
+
+#1.0.18
+- Menambahkan Kolom Baru Pada Table DateSchedule

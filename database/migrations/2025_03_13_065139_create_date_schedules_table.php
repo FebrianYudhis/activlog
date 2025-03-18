@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->foreignId('schedule_id')->constrained()->restrictOnDelete()->restrictOnUpdate();
             $table->dateTime('due_date');
+            $table->integer('is_invalid')->nullable();
             $table->timestamps();
         });
     }
