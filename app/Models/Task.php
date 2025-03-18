@@ -10,7 +10,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    public function dateschedule(): BelongsTo
+    public function dateSchedule(): BelongsTo
     {
         return $this->belongsTo(DateSchedule::class);
     }

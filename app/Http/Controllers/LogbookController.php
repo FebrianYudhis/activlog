@@ -114,18 +114,36 @@ class LogbookController extends Controller
             'catatan' => ['required', 'string'],
         ]);
 
-        $note->update(['note' => $validated['catatan']]);
+        $sekarang = Carbon::now('Asia/Jakarta');
+        $batasAkhir = Carbon::parse($note->dateSchedule->due_date, 'Asia/Jakarta');
 
-        Alert::success('Berhasil', 'Catatan Berhasil Diubah !');
+        if ($note->dateSchedule->user->id == Auth::user()->id and $sekarang->lt($batasAkhir)) {
+            if ($note->update(['note' => $validated['catatan']])) {
+                Alert::success('Berhasil', 'Catatan Berhasil Diubah !');
+            } else {
+                Alert::error('Gagal', 'Catatan Gagal Diubah !');
+            }
+        } else {
+            Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
+        }
 
         return redirect()->back();
     }
 
     public function hapusTugas(Task $task)
     {
-        $task->delete();
+        $sekarang = Carbon::now('Asia/Jakarta');
+        $batasAkhir = Carbon::parse($task->dateSchedule->due_date, 'Asia/Jakarta');
 
-        Alert::success('Berhasil', 'Tugas Berhasil Dihapus !');
+        if ($task->dateSchedule->user->id == Auth::user()->id and $sekarang->lt($batasAkhir)) {
+            if ($task->delete()) {
+                Alert::success('Berhasil', 'Tugas Berhasil Dihapus !');
+            } else {
+                Alert::error('Gagal', 'Tugas Gagal Dihapus !');
+            }
+        } else {
+            Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
+        }
 
         return redirect()->back();
     }
