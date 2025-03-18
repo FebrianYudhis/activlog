@@ -16,11 +16,16 @@ Route::group([], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('app', HomeController::class)->name('app');
-    Route::get('app/logbook/tambah', [LogbookController::class, 'tambahForm'])->name('logbook.tambah');
-    Route::post('app/logbook/tambah', [LogbookController::class, 'tambah']);
-    Route::get('app/logbook/{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
-    Route::patch('app/logbook/catatan/{note}', [LogbookController::class, 'updateCatatan'])->name('logbook.catatan');
-    Route::delete('app/logbook/task/hapus/{task}', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
-    Route::delete('app/logbook/hapus/{date_schedule}', [LogbookController::class, 'hapus'])->name('logbook.hapus');
-    Route::patch('app/logbook/status/{status}/{date_schedule}', [LogbookController::class, 'updateStatus'])->name('logbook.status');
+
+    Route::prefix('app/logbook')->group(function () {
+        Route::get('tambah', [LogbookController::class, 'tambahForm'])->name('logbook.tambah');
+        Route::post('tambah', [LogbookController::class, 'tambah']);
+        Route::delete('hapus/{date_schedule}', [LogbookController::class, 'hapus'])->name('logbook.hapus');
+        Route::patch('status/{status}/{date_schedule}', [LogbookController::class, 'updateStatus'])->name('logbook.status');
+
+        Route::patch('catatan/{note}', [LogbookController::class, 'updateCatatan'])->name('logbook.catatan');
+        Route::delete('task/{task}/hapus', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
+
+        Route::get('{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
+    });
 });

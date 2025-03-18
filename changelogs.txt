@@ -77,3 +77,6 @@
 
 #1.1.4
 - Mengunci Logika Untuk Mengedit Catatan dan Menghapus Tugas
+
+#1.1.5
+- Merapikan Routing
