@@ -49,3 +49,6 @@
 
 #1.0.16
 - Menambahkan Sweetalert Ketika Data Terhapus
+
+#1.0.17
+- Menambahkan DateSchedule Observer Agar Table Note Otomatis Terisi Apabila Ada DateSchedule Baru
