@@ -87,3 +87,6 @@
 #1.2.0
 - Menyelesaikan Menu Tambah Tugas
 ===STABLE RELEASE===
+
+#1.2.1
+- Menambahkan Data Baru Ke Seeder

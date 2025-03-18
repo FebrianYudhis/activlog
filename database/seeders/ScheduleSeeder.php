@@ -24,6 +24,10 @@ class ScheduleSeeder extends Seeder
                 'additional_hours' => 17,
             ],
             [
+                'name' => 'Reguler Ramadan',
+                'additional_hours' => 18,
+            ],
+            [
                 'name' => 'Pagi',
                 'additional_hours' => 17,
             ],
@@ -44,16 +48,16 @@ class ScheduleSeeder extends Seeder
                 'additional_hours' => 33,
             ],
             [
-                'name' => 'Reguler Ramadan',
-                'additional_hours' => 18,
-            ],
-            [
                 'name' => 'WFA 1 (Administrasi)',
                 'additional_hours' => 19,
             ],
             [
                 'name' => 'WFA 2',
                 'additional_hours' => 17,
+            ],
+            [
+                'name' => 'WFA Ramadan',
+                'additional_hours' => 18,
             ]
         ];
         foreach ($schedules as $schedule) {
