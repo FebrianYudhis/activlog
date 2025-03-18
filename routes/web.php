@@ -18,4 +18,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('app', HomeController::class)->name('app');
     Route::get('app/logbook/{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
     Route::delete('app/logbook/hapus/{date_schedule}', [LogbookController::class, 'hapus'])->name('logbook.hapus');
+    Route::patch('app/logbook/status/{status}/{date_schedule}', [LogbookController::class, 'updateStatus'])->name('logbook.status');
 });

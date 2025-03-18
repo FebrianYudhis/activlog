@@ -55,3 +55,6 @@
 
 #1.0.18
 - Menambahkan Kolom Baru Pada Table DateSchedule
+
+#1.0.19
+- Menambahkan Fitur Minta Hapus Pada DataSchedule
