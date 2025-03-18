@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DateSchedule;
+use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,44 @@ class LogbookController extends Controller
         } else {
             Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
             return redirect()->route('app');
+        }
+
+        return redirect()->route('app');
+    }
+
+    public function tambahForm()
+    {
+        $data = [
+            'judul' => 'Tambah Tanggal Logbook',
+            'minDate' => Carbon::now()->subDay()->toDateString(),
+            'dataJadwalDinas' => Schedule::select('id', 'name')->get(),
+        ];
+
+        return view('form.logbook.tambah', $data);
+    }
+
+    public function tambah(Request $request)
+    {
+        $minDate = Carbon::now()->subDay()->toDateString();
+
+        $validated = $request->validate([
+            'tanggal' => ['required', 'date', 'after_or_equal:' . $minDate],
+            'jadwalDinas' => ['required', 'exists:schedules,id'],
+        ]);
+
+        $aditionalHours = Schedule::find($validated['jadwalDinas'])->additional_hours;
+
+        $dataJadwal = DateSchedule::create([
+            'user_id' => Auth::user()->id,
+            'date' => $validated['tanggal'],
+            'schedule_id' => $validated['jadwalDinas'],
+            'due_date' => Carbon::parse($validated['tanggal'], 'Asia/Jakarta')->addHours($aditionalHours),
+        ]);
+
+        if ($dataJadwal) {
+            Alert::success('Berhasil', 'Data Berhasil Ditambahkan !');
+        } else {
+            Alert::error('Gagal', 'Data Gagal Ditambahkan !');
         }
 
         return redirect()->route('app');
