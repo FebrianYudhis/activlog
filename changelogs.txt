@@ -93,3 +93,6 @@
 
 #1.2.2
 - Menghapus Min Date Untuk Menambahkan Tanggal Logbook
+
+#1.2.3
+- Membuat Kerangka Halaman Admin
