@@ -32,6 +32,42 @@ class LogbookController extends Controller
         return view('form.task.index', $data);
     }
 
+    public function tambahForm()
+    {
+        $data = [
+            'judul' => 'Tambah Tanggal Logbook',
+            'dataJadwalDinas' => Schedule::select('id', 'name')->get(),
+        ];
+
+        return view('form.logbook.tambah', $data);
+    }
+
+    public function tambah(Request $request)
+    {
+
+        $validated = $request->validate([
+            'tanggal' => ['required', 'date'],
+            'jadwalDinas' => ['required', 'exists:schedules,id'],
+        ]);
+
+        $aditionalHours = Schedule::find($validated['jadwalDinas'])->additional_hours;
+
+        $dataJadwal = DateSchedule::create([
+            'user_id' => Auth::user()->id,
+            'date' => $validated['tanggal'],
+            'schedule_id' => $validated['jadwalDinas'],
+            'due_date' => Carbon::parse($validated['tanggal'], 'Asia/Jakarta')->addHours($aditionalHours),
+        ]);
+
+        if ($dataJadwal) {
+            Alert::success('Berhasil', 'Data Berhasil Ditambahkan !');
+        } else {
+            Alert::error('Gagal', 'Data Gagal Ditambahkan !');
+        }
+
+        return redirect()->route('app');
+    }
+
     public function hapus(DateSchedule $dateSchedule)
     {
         $sekarang = Carbon::now('Asia/Jakarta');
@@ -71,42 +107,6 @@ class LogbookController extends Controller
         return redirect()->route('app');
     }
 
-    public function tambahForm()
-    {
-        $data = [
-            'judul' => 'Tambah Tanggal Logbook',
-            'dataJadwalDinas' => Schedule::select('id', 'name')->get(),
-        ];
-
-        return view('form.logbook.tambah', $data);
-    }
-
-    public function tambah(Request $request)
-    {
-
-        $validated = $request->validate([
-            'tanggal' => ['required', 'date'],
-            'jadwalDinas' => ['required', 'exists:schedules,id'],
-        ]);
-
-        $aditionalHours = Schedule::find($validated['jadwalDinas'])->additional_hours;
-
-        $dataJadwal = DateSchedule::create([
-            'user_id' => Auth::user()->id,
-            'date' => $validated['tanggal'],
-            'schedule_id' => $validated['jadwalDinas'],
-            'due_date' => Carbon::parse($validated['tanggal'], 'Asia/Jakarta')->addHours($aditionalHours),
-        ]);
-
-        if ($dataJadwal) {
-            Alert::success('Berhasil', 'Data Berhasil Ditambahkan !');
-        } else {
-            Alert::error('Gagal', 'Data Gagal Ditambahkan !');
-        }
-
-        return redirect()->route('app');
-    }
-
     public function updateCatatan(Note $note, Request $request)
     {
         $validated = $request->validate([
@@ -121,24 +121,6 @@ class LogbookController extends Controller
                 Alert::success('Berhasil', 'Catatan Berhasil Diubah !');
             } else {
                 Alert::error('Gagal', 'Catatan Gagal Diubah !');
-            }
-        } else {
-            Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
-        }
-
-        return redirect()->back();
-    }
-
-    public function hapusTugas(Task $task)
-    {
-        $sekarang = Carbon::now('Asia/Jakarta');
-        $batasAkhir = Carbon::parse($task->dateSchedule->due_date, 'Asia/Jakarta');
-
-        if ($task->dateSchedule->user->id == Auth::user()->id and $sekarang->lt($batasAkhir)) {
-            if ($task->delete()) {
-                Alert::success('Berhasil', 'Tugas Berhasil Dihapus !');
-            } else {
-                Alert::error('Gagal', 'Tugas Gagal Dihapus !');
             }
         } else {
             Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
@@ -182,5 +164,23 @@ class LogbookController extends Controller
         }
 
         return redirect()->route('logbook', $dateSchedule->id);
+    }
+
+    public function hapusTugas(Task $task)
+    {
+        $sekarang = Carbon::now('Asia/Jakarta');
+        $batasAkhir = Carbon::parse($task->dateSchedule->due_date, 'Asia/Jakarta');
+
+        if ($task->dateSchedule->user->id == Auth::user()->id and $sekarang->lt($batasAkhir)) {
+            if ($task->delete()) {
+                Alert::success('Berhasil', 'Tugas Berhasil Dihapus !');
+            } else {
+                Alert::error('Gagal', 'Tugas Gagal Dihapus !');
+            }
+        } else {
+            Alert::error('Gagal', 'Anda Tidak Berhak Mengubah Data !');
+        }
+
+        return redirect()->back();
     }
 }

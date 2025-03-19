@@ -96,3 +96,6 @@
 
 #1.2.3
 - Membuat Kerangka Halaman Admin
+
+#1.2.4
+- Merapikan Kodingan
