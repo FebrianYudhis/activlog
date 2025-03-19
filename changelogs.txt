@@ -90,3 +90,6 @@
 
 #1.2.1
 - Menambahkan Data Baru Ke Seeder
+
+#1.2.2
+- Menghapus Min Date Untuk Menambahkan Tanggal Logbook

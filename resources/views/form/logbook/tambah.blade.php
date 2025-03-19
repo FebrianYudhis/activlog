@@ -9,7 +9,7 @@
                 <div class="mb-6">
                     <label class="form-label" for="tanggal">Tanggal</label>
                     <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal"
-                        name="tanggal" min="{{ $minDate }}" required>
+                        name="tanggal" required>
                     @error('tanggal')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

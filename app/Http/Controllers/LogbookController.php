@@ -75,7 +75,6 @@ class LogbookController extends Controller
     {
         $data = [
             'judul' => 'Tambah Tanggal Logbook',
-            'minDate' => Carbon::now()->subDay()->toDateString(),
             'dataJadwalDinas' => Schedule::select('id', 'name')->get(),
         ];
 
@@ -84,10 +83,9 @@ class LogbookController extends Controller
 
     public function tambah(Request $request)
     {
-        $minDate = Carbon::now()->subDay()->toDateString();
 
         $validated = $request->validate([
-            'tanggal' => ['required', 'date', 'after_or_equal:' . $minDate],
+            'tanggal' => ['required', 'date'],
             'jadwalDinas' => ['required', 'exists:schedules,id'],
         ]);
 
