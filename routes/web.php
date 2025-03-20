@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\{LoginController, RegisterController};
-use App\Http\Controllers\{HomeController, LogbookController};
+use App\Http\Controllers\{HomeController, LogbookController, PanelController};
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +38,5 @@ Route::get('admin', [AdminController::class, 'index'])->name('admin');
 Route::post('admin', [AdminController::class, 'verifikasiLogin']);
 
 Route::middleware(CheckAdmin::class)->group(function () {
-    Route::get('panel', function () {
-        return 'Panel Admin';
-    })->name('panel');
+    Route::get('panel', [PanelController::class, 'index'])->name('panel');
 });

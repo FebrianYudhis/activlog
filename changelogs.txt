@@ -99,3 +99,6 @@
 
 #1.2.4
 - Merapikan Kodingan
+
+#1.2.5
+- Menyiapkan Template Halaman Admin
