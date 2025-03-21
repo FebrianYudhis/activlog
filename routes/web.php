@@ -39,4 +39,5 @@ Route::post('admin', [AdminController::class, 'verifikasiLogin']);
 
 Route::middleware(CheckAdmin::class)->group(function () {
     Route::get('panel', [PanelController::class, 'index'])->name('panel');
+    Route::get('panel/logbook/{date_schedule}', [PanelController::class, 'detail'])->name('panel.detail');
 });

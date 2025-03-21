@@ -102,3 +102,7 @@
 
 #1.2.5
 - Menyiapkan Template Halaman Admin
+
+#1.2.6
+- Membuat List Permintaan Hapus Data Logbook
+- Membuat Tampilan Detail Logbook
