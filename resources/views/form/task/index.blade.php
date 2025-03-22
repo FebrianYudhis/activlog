@@ -49,7 +49,7 @@
         <div class="card-header">Tugas</div>
         <div class="card-body">
             @if ($isAllowed)
-                <a href="{{ route('logbook.task.tambah', [$dataLogbook->id]) }}" class="btn btn-primary w-100 mb-4">Tambah
+                <a href="{{ route('logbook.task.tambah', $dataLogbook->id) }}" class="btn btn-primary w-100 mb-4">Tambah
                     Data</a>
             @else
                 <button class="btn btn-primary w-100 mb-4" disabled>Tambah Data</button>
@@ -68,7 +68,7 @@
                                 <td>{{ $task->task }}</td>
                                 <td>
                                     @if ($isAllowed)
-                                        <a href="{{ route('logbook.tugas.hapus', [$task->id]) }}" class="btn btn-danger w-100"
+                                        <a href="{{ route('logbook.tugas.hapus', $task->id) }}" class="btn btn-danger w-100"
                                             data-confirm-delete="true">Hapus</a>
                                     @else
                                         <button class="btn btn-danger w-100" disabled>Hapus</button>

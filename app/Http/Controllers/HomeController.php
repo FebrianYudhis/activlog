@@ -28,7 +28,7 @@ class HomeController extends Controller
                     $sekarang = Carbon::now('Asia/Jakarta');
                     $batasAkhir = Carbon::parse($data['due_date'], 'Asia/Jakarta');
 
-                    $button = "<a href='" . route('logbook', [$data['id']]) . "' class='btn btn-primary w-100'>Lihat</a>";
+                    $button = "<a href='" . route('logbook', $data['id']) . "' class='btn btn-primary w-100'>Lihat</a>";
 
                     if ($data['tasks']->count() == 0 and $sekarang->gt($batasAkhir)) {
                         if ($data['is_invalid'] == null) {
@@ -37,7 +37,7 @@ class HomeController extends Controller
                             $button = $button . "<form action='" . route('logbook.status', [0, $data['id']]) . "' class='mt-1 w-100' method='POST'> " . csrf_field() . method_field('patch') . " <button type='submit' class='btn btn-success w-100'>Batalkan Minta Hapus</button></form>";
                         }
                     } else if ($sekarang->lt($batasAkhir)) {
-                        $button = $button . "<a href='" . route('logbook.hapus', [$data['id']]) . "' class='btn btn-danger w-100 mt-1' data-confirm-delete='true'>Hapus</a>";
+                        $button = $button . "<a href='" . route('logbook.hapus', $data['id']) . "' class='btn btn-danger w-100 mt-1' data-confirm-delete='true'>Hapus</a>";
                     }
 
                     return $button;

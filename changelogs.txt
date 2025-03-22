@@ -109,3 +109,6 @@
 
 #1.2.7
 - Membuat Menu Hapus Logbook Pada Halaman Admin
+
+#1.2.8
+- Merapikan Kodingan
