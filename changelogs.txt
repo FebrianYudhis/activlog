@@ -118,3 +118,6 @@
 
 #1.2.10
 - Menambahkan List Data Logbook
+
+#1.2.11
+- Menyiapkan Fitur Download Data Logbook

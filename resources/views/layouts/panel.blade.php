@@ -27,7 +27,7 @@
                 <ul class="menu-inner">
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Fitur</span></li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('panel.download-data') }}" class="menu-link">
                             <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
                                 <path d="m12 16 4-5h-3V4h-2v7H8z"></path>

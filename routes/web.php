@@ -41,6 +41,8 @@ Route::middleware(CheckAdmin::class)->group(function () {
     Route::get('panel', [PanelController::class, 'index'])->name('panel');
 
     Route::prefix('panel/logbook')->group(function () {
+        Route::get('download-data', [PanelController::class, 'downloadDataForm'])->name('panel.download-data');
+        Route::post('download-data', [PanelController::class, 'downloadData']);
         Route::delete('{date_schedule}/hapus', [PanelController::class, 'hapusLogbook'])->name('panel.logbook.hapus');
         Route::get('{date_schedule}', [PanelController::class, 'logbook'])->name('panel.logbook');
     });

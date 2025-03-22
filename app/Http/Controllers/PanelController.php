@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DateSchedule;
+use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
@@ -54,5 +55,33 @@ class PanelController extends Controller
         }
 
         return redirect()->route('panel');
+    }
+
+    public function downloadDataForm()
+    {
+        $data = [
+            'judul' => 'Download Data',
+            'semuaPengguna' => User::all()
+        ];
+
+        return view('panel.download', $data);
+    }
+
+    public function downloadData(Request $request)
+    {
+        $data = DateSchedule::where('user_id', $request->pengguna)->whereBetween('date', [$request->tanggalAwal, $request->tanggalAkhir])->with('tasks', 'note')->get();
+
+        if ($data->isNotEmpty()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil ditemukan',
+                'data' => $data
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Data tidak ditemukan'
+        ], 404);
     }
 }
