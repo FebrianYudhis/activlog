@@ -5,15 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\DateSchedule;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Yajra\DataTables\Facades\DataTables;
 
 class PanelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $data = [
             'judul' => 'Panel Admin',
             'permintaanHapusLogbook' => DateSchedule::whereNot('is_invalid', null)->with('user', 'schedule')->get(),
         ];
+
+        if ($request->ajax()) {
+            $query = DateSchedule::where('is_invalid', null)->with('user', 'schedule');
+
+            return DataTables::of($query)
+                ->addColumn('aksi', function ($data) {
+                    $button = "<a href='" . route('panel.logbook', $data['id']) . "' class='btn btn-info w-100'>Detail</a>";
+
+                    return $button;
+                })->rawColumns(['aksi'])
+                ->toJson();
+        }
 
         return view('panel', $data);
     }

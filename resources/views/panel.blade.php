@@ -23,6 +23,39 @@
                     }
                 ]
             });
+
+            $('#tabelDataLogbook').DataTable({
+                paging: true,
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('panel') }}",
+                columns: [
+                    {
+                        data: 'user.name',
+                        name: 'user.name',
+                        orderable: false,
+                    },
+                    {
+                        data: 'date',
+                        name: 'date',
+                    },
+                    {
+                        data: 'schedule.name',
+                        name: 'schedule.name',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                order: [
+                    [1, 'desc']
+                ]
+            });
         });
     </script>
 @endpush
@@ -53,6 +86,24 @@
                             </tr>
                         @endforeach
                     </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-header">List Data Logbook</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="tabelDataLogbook">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Jadwal Dinas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
