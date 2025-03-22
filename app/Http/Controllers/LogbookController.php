@@ -86,17 +86,17 @@ class LogbookController extends Controller
         return redirect()->route('app');
     }
 
-    public function updateStatus($status, DateSchedule $dateSchedule)
+    public function updateStatus(DateSchedule $dateSchedule, $status)
     {
         $sekarang = Carbon::now('Asia/Jakarta');
         $batasAkhir = Carbon::parse($dateSchedule->due_date, 'Asia/Jakarta');
 
         if ($dateSchedule->user->id == Auth::user()->id and $sekarang->gt($batasAkhir) and $dateSchedule->tasks->count() == 0) {
             if ($status == 1) {
-                $dateSchedule->update(['is_invalid' => 1]);
+                $dateSchedule->update(['is_invalid' => 1, 'invalid_reason' => request()->input('alasan')]);
                 Alert::success('Berhasil', 'Berhasil Minta Hapus !');
             } else {
-                $dateSchedule->update(['is_invalid' => null]);
+                $dateSchedule->update(['is_invalid' => null, 'invalid_reason' => null]);
                 Alert::success('Berhasil', 'Berhasil Membatalkan Minta Hapus !');
             }
         } else {

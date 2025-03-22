@@ -112,3 +112,6 @@
 
 #1.2.8
 - Merapikan Kodingan
+
+#1.2.9
+- Menambahkan Kolom Alasan Minta Hapus dan Implementasi Fitur

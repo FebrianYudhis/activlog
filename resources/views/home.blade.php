@@ -37,6 +37,38 @@
                     [0, 'desc']
                 ]
             });
+
+            $('#tabelListTanggal').on("click", ".mintaHapus", function (event) {
+                var logbookId = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Alasan Minta Hapus',
+                    input: 'textarea',
+                    inputPlaceholder: 'Masukkan Alasan Anda...',
+                    showCancelButton: true,
+                    cancelButtonText: 'Batal',
+                    confirmButtonText: 'Minta Hapus',
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Alasan Tidak Boleh kosong!';
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        const alasan = result.value;
+
+                        const form = $('<form>', {
+                            action: "{{ route('logbook.status', ['__ID__', 1]) }}".replace('__ID__', logbookId),
+                            method: 'POST',
+                            html: `@csrf @method('patch')<input type="hidden" name="alasan" value="${alasan}">`
+                        });
+
+                        $('body').append(form);
+                        form.submit();
+                    }
+                });
+            });
         });
     </script>
 @endpush

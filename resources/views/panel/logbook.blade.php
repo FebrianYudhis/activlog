@@ -20,7 +20,10 @@
     </div>
     <div class="card mt-4">
         <div class="card-body">
-                <a href="{{ route('panel.logbook.hapus', $dataDetail->id) }}" class="btn @if ($dataDetail->is_invalid == null) btn-danger @else btn-success @endif w-100" data-confirm-delete="true">Hapus Logbook</a>
+            @if ($dataDetail->is_invalid != null)
+                <div class="alert alert-success" role="alert">Alasan Minta Hapus : <span class="fst-italic fw-bold">{{ $dataDetail->invalid_reason }}</span></div>
+            @endif
+                <a href="{{ route('panel.logbook.hapus', $dataDetail->id) }}" class="btn @if ($dataDetail->is_invalid != null) btn-success @else btn-danger @endif w-100" data-confirm-delete="true">Hapus Logbook</a>
             </form>
         </div>
     </div>
