@@ -106,3 +106,6 @@
 #1.2.6
 - Membuat List Permintaan Hapus Data Logbook
 - Membuat Tampilan Detail Logbook
+
+#1.2.7
+- Membuat Menu Hapus Logbook Pada Halaman Admin

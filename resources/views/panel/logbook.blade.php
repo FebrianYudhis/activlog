@@ -18,4 +18,10 @@
             <span class="badge text-bg-info">{{ $dataDetail->note->note }}</span>
         </div>
     </div>
+    <div class="card mt-4">
+        <div class="card-body">
+                <a href="{{ route('panel.logbook.hapus', $dataDetail->id) }}" class="btn @if ($dataDetail->is_invalid == null) btn-danger @else btn-success @endif w-100" data-confirm-delete="true">Hapus Logbook</a>
+            </form>
+        </div>
+    </div>
 @endsection

@@ -22,8 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('app/logbook')->group(function () {
         Route::get('tambah', [LogbookController::class, 'tambahForm'])->name('logbook.tambah');
         Route::post('tambah', [LogbookController::class, 'tambah']);
-        Route::delete('hapus/{date_schedule}', [LogbookController::class, 'hapus'])->name('logbook.hapus');
-        Route::patch('status/{status}/{date_schedule}', [LogbookController::class, 'updateStatus'])->name('logbook.status');
+        Route::delete('{date_schedule}/hapus', [LogbookController::class, 'hapus'])->name('logbook.hapus');
+        Route::patch('{date_schedule}/status/{status}/', [LogbookController::class, 'updateStatus'])->name('logbook.status');
 
         Route::patch('catatan/{note}', [LogbookController::class, 'updateCatatan'])->name('logbook.catatan');
         Route::delete('task/{task}/hapus', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
@@ -39,5 +39,9 @@ Route::post('admin', [AdminController::class, 'verifikasiLogin']);
 
 Route::middleware(CheckAdmin::class)->group(function () {
     Route::get('panel', [PanelController::class, 'index'])->name('panel');
-    Route::get('panel/logbook/{date_schedule}', [PanelController::class, 'detail'])->name('panel.detail');
+
+    Route::prefix('panel/logbook')->group(function () {
+        Route::delete('{date_schedule}/hapus', [PanelController::class, 'hapusLogbook'])->name('panel.logbook.hapus');
+        Route::get('{date_schedule}', [PanelController::class, 'logbook'])->name('panel.logbook');
+    });
 });

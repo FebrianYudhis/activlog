@@ -11,7 +11,18 @@
         crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
-            $('#tabelPermintaanHapusLogbook').DataTable({});
+            $('#tabelPermintaanHapusLogbook').DataTable({
+                order: [
+                    [1, 'desc']
+                ],
+                columnDefs: [
+                    {
+                        targets: [0, 2, 3],
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            });
         });
     </script>
 @endpush
@@ -37,7 +48,7 @@
                                 <td>{{ $item->date }}</td>
                                 <td>{{ $item->schedule->name }}</td>
                                 <td>
-                                    <a href="{{ route('panel.detail', $item->id) }}" class="btn btn-info w-100">Detail</a>
+                                    <a href="{{ route('panel.logbook', $item->id) }}" class="btn btn-info w-100">Detail</a>
                                 </td>
                             </tr>
                         @endforeach
