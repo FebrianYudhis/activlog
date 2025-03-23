@@ -6,7 +6,7 @@ use App\Http\Controllers\{HomeController, LogbookController, PanelController};
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/app');
+Route::redirect('/', 'app');
 
 Route::group([], function () {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');

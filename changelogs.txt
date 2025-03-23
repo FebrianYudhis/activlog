@@ -125,3 +125,6 @@
 #1.3.0
 - Menyelesaikan Fitur Download Data Logbook
 ===STABLE RELEASE===
+
+#1.3.1
+- Memperbaiki Bug Route
