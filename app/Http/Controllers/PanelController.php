@@ -74,6 +74,7 @@ class PanelController extends Controller
     {
         $data = DateSchedule::where('user_id', $request->pengguna)
             ->whereBetween('date', [$request->tanggalAwal, $request->tanggalAkhir])
+            ->whereNotNull('is_checked')
             ->with('tasks', 'note', 'user', 'schedule')
             ->get();
 

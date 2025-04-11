@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('due_date');
             $table->integer('is_invalid')->nullable();
             $table->string('invalid_reason')->nullable();
+            $table->integer('is_checked')->nullable();
             $table->timestamps();
         });
     }

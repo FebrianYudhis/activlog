@@ -26,11 +26,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('{date_schedule}/status/{status}/', [LogbookController::class, 'updateStatus'])->name('logbook.status');
 
         Route::patch('catatan/{note}', [LogbookController::class, 'updateCatatan'])->name('logbook.catatan');
-        Route::delete('task/{task}/hapus', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
+        Route::delete('tugas/{task}/hapus', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
 
         Route::get('{date_schedule}', [LogbookController::class, 'index'])->name('logbook');
-        Route::get('{date_schedule}/task/tambah', [LogbookController::class, 'tambahTaskForm'])->name('logbook.task.tambah');
-        Route::post('{date_schedule}/task/tambah', [LogbookController::class, 'tambahTask']);
+        Route::get('{date_schedule}/tugas/tambah', [LogbookController::class, 'tambahTaskForm'])->name('logbook.tugas.tambah');
+        Route::post('{date_schedule}/tugas/tambah', [LogbookController::class, 'tambahTask']);
     });
 });
 

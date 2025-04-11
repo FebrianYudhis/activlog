@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">Tambah Tugas</div>
         <div class="card-body">
-            <form method="POST" action="{{ route('logbook.task.tambah', $dataLogbook->id) }}">
+            <form method="POST" action="{{ route('logbook.tugas.tambah', $dataLogbook->id) }}">
                 @csrf
                 <div class="mb-6">
                     <label class="form-label" for="tugas">Tugas</label>
