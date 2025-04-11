@@ -13,7 +13,7 @@
         $(document).ready(function () {
             $('.dataTableLogbook').DataTable({
                 order: [
-                    [1, 'desc']
+                    [1, 'asc']
                 ],
                 columnDefs: [
                     {

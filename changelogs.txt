@@ -137,3 +137,6 @@
 #1.4.1
 - Menyelesaikan Fitur Cek Logbook
 - Memperbaiki Tampilan
+
+#1.4.2
+- Mengganti Sorting Panel List Logbook
