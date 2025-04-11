@@ -133,3 +133,7 @@
 - Menambahkan Kolom Cek Logbook Pada Database
 - Membuat Download Data Hanya Berlaku Untuk Logbook Yang Sudah Diperiksa
 - Memperbaiki Route
+
+#1.4.1
+- Menyelesaikan Fitur Cek Logbook
+- Memperbaiki Tampilan

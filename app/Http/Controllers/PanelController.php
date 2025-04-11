@@ -17,11 +17,12 @@ class PanelController extends Controller
     {
         $data = [
             'judul' => 'Panel Admin',
-            'permintaanHapusLogbook' => DateSchedule::whereNot('is_invalid', null)->with('user', 'schedule')->get(),
+            'permintaanHapusLogbook' => DateSchedule::whereNotNull('is_invalid')->with('user', 'schedule')->get(),
+            'belumDiperiksaLogbook' => DateSchedule::whereNull('is_invalid')->whereNull('is_checked')->with('user', 'schedule')->get(),
         ];
 
         if ($request->ajax()) {
-            $query = DateSchedule::where('is_invalid', null)->with('user', 'schedule');
+            $query = DateSchedule::whereNull('is_invalid')->whereNotNull('is_checked')->with('user', 'schedule');
 
             return DataTables::of($query)
                 ->addColumn('aksi', function ($data) {
@@ -58,6 +59,13 @@ class PanelController extends Controller
         }
 
         return redirect()->route('panel');
+    }
+
+    public function sudahDiperiksa(DateSchedule $dateSchedule)
+    {
+        $dateSchedule->update(['is_checked' => 1]);
+        Alert::success('Berhasil', 'Berhasil Menandai Sudah Diperiksa !');
+        return redirect()->back();
     }
 
     public function downloadDataForm()

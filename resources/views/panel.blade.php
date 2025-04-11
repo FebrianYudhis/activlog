@@ -11,7 +11,7 @@
         crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
-            $('#tabelPermintaanHapusLogbook').DataTable({
+            $('.dataTableLogbook').DataTable({
                 order: [
                     [1, 'desc']
                 ],
@@ -65,7 +65,7 @@
         <div class="card-header">List Permintaan Hapus Data Logbook</div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="tabelPermintaanHapusLogbook">
+                <table class="table table-bordered table-striped dataTableLogbook">
                     <thead class="table-dark">
                         <tr>
                             <th>Nama</th>
@@ -91,7 +91,36 @@
         </div>
     </div>
     <div class="card mt-4">
-        <div class="card-header">List Data Logbook</div>
+        <div class="card-header">List Logbook Belum Diperiksa</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped dataTableLogbook">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Jadwal Dinas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($belumDiperiksaLogbook as $item)
+                            <tr>
+                                <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->date }}</td>
+                                <td>{{ $item->schedule->name }}</td>
+                                <td>
+                                    <a href="{{ route('panel.logbook', $item->id) }}" class="btn btn-info w-100">Detail</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-header">List Semua Data Logbook Valid</div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="tabelDataLogbook">
