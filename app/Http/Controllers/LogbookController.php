@@ -25,6 +25,11 @@ class LogbookController extends Controller
             'batasAkhir' => $batasAkhir,
         ];
 
+        if ($data['dataLogbook']->user->id != Auth::user()->id) {
+            Alert::error('Gagal', 'Anda Tidak Berhak Mengakses Data Ini !');
+            return redirect()->route('app');
+        }
+
         $title = 'Hapus Data !';
         $text = "Apakah Kamu Yakin Ingin Menghapus Data Ini ?";
         confirmDelete($title, $text);

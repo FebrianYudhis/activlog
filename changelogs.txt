@@ -140,3 +140,6 @@
 
 #1.4.2
 - Mengganti Sorting Panel List Logbook
+
+#1.4.3
+- Memperbaiki Bug Dapat Melihat Logbook Pegawai Lain
