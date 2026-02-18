@@ -58,6 +58,7 @@
                 <table class="table table-bordered table-striped" id="tabelListTugas">
                     <thead class="table-dark">
                         <tr>
+                            <th>Waktu</th>
                             <th>Tugas</th>
                             <th>Aksi</th>
                         </tr>
@@ -65,6 +66,7 @@
                     <tbody>
                         @foreach ($dataLogbook->tasks as $task)
                             <tr>
+                                <td>{{ $task->time ? \Carbon\Carbon::createFromFormat('H:i:s', $task->time)->format('H:i') : '-' }}</td>
                                 <td>{{ $task->task }}</td>
                                 <td>
                                     @if ($isAllowed)

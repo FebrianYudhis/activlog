@@ -150,7 +150,8 @@ class PanelController extends Controller
             if (!empty($item->tasks)) {
                 foreach ($item->tasks as $task) {
                     $sheet->setCellValue("A$row", '-');
-                    $sheet->setCellValue("B$row", $task->task);
+                    $taskTime = $task->time ? \Carbon\Carbon::createFromFormat('H:i:s', $task->time)->format('H:i') : '-';
+                    $sheet->setCellValue("B$row", "[$taskTime] {$task->task}");
                     $sheet->mergeCells("B$row:D$row");
                     $sheet->getStyle("B$row")->getAlignment()->setWrapText(true);
                     $row++;

@@ -27,7 +27,10 @@
             </div>
             <ul class="list-group">
                 @foreach ($dataDetail->tasks as $item)
-                    <li class="list-group-item">{{ $item->task }}</li>
+                    <li class="list-group-item">
+                        [{{ $item->time ? \Carbon\Carbon::createFromFormat('H:i:s', $item->time)->format('H:i') : '-' }}]
+                        {{ $item->task }}
+                    </li>
                 @endforeach
             </ul>
         </div>

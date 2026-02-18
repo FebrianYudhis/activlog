@@ -21,7 +21,8 @@ class TaskFactory extends Factory
 
         return [
             'date_schedule_id' => $dateScheduleId,
-            'task' => $this->faker->sentence
+            'task' => $this->faker->sentence,
+            'time' => $this->faker->time('H:i:s'),
         ];
     }
 }

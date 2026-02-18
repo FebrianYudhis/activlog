@@ -148,6 +148,7 @@ class LogbookController extends Controller
     {
         $validated = $request->validate([
             'tugas' => ['required', 'string'],
+            'waktu' => ['required', 'date_format:H:i'],
         ]);
 
         $sekarang = Carbon::now('Asia/Jakarta');
@@ -157,6 +158,7 @@ class LogbookController extends Controller
             $dataTugas = Task::create([
                 'date_schedule_id' => $dateSchedule->id,
                 'task' => $validated['tugas'],
+                'time' => $validated['waktu'],
             ]);
 
             if ($dataTugas) {

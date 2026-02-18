@@ -7,6 +7,14 @@
             <form method="POST" action="{{ route('logbook.tugas.tambah', $dataLogbook->id) }}">
                 @csrf
                 <div class="mb-6">
+                    <label class="form-label" for="waktu">Waktu</label>
+                    <input type="time" class="form-control @error('waktu') is-invalid @enderror" id="waktu"
+                        name="waktu" required>
+                    @error('waktu')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-6">
                     <label class="form-label" for="tugas">Tugas</label>
                     <input type="text" class="form-control @error('tugas') is-invalid @enderror" id="tugas" name="tugas"
                         required>

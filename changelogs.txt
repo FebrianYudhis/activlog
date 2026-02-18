@@ -143,3 +143,6 @@
 
 #1.4.3
 - Memperbaiki Bug Dapat Melihat Logbook Pegawai Lain
+
+#1.5.0
+- Menambahkan Form Input Waktu Untuk Jam Tugas / Kegiatan
