@@ -14,6 +14,7 @@
             color: #1f2937;
             font-size: 12px;
             line-height: 1.4;
+            padding-bottom: 28px;
         }
 
         .cover {
@@ -106,10 +107,27 @@
         .page-break {
             page-break-after: always;
         }
+
+        .footer-watermark {
+            position: fixed;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 10px;
+            color: #334155;
+            opacity: 0.6;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 5px;
+        }
     </style>
 </head>
 
 <body>
+    <div class="footer-watermark">
+        Dokumen ini bersumber dari aplikasi pencatatan logbook dan dinyatakan valid.
+    </div>
+
     <div class="cover">
         <p class="title">Rekap Logbook Harian</p>
         <p class="subtitle"><strong>Nama:</strong> {{ $userName }}</p>

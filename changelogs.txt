@@ -152,3 +152,6 @@
 
 #1.5.2
 - Menambahkan Custom Halaman Kode 503
+
+#1.5.3
+- Menambahkan Footer Watermark Untuk Download PDF
