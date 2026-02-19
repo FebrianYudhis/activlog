@@ -149,3 +149,6 @@
 
 #1.5.1
 - Mengganti Format Download dari Excel Menjadi PDF
+
+#1.5.2
+- Menambahkan Custom Halaman Kode 503
