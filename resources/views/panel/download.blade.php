@@ -36,7 +36,7 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mt-6">Download</button>
+                <button type="submit" class="btn btn-primary w-100 mt-6">Download PDF</button>
             </form>
         </div>
     </div>
