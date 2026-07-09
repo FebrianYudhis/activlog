@@ -22,7 +22,7 @@ class AdminController extends Controller
             'passkey' => 'required',
         ]);
 
-        if ($validated['passkey'] == env('PASSKEY_ADMIN')) {
+        if ($validated['passkey'] == config('auth.admin_passkey')) {
             $request->session()->put('admin', true);
             return redirect()->route('panel');
         } else {

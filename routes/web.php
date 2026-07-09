@@ -18,6 +18,8 @@ Route::group([], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('app', HomeController::class)->name('app');
+    Route::get('password', [\App\Http\Controllers\ProfileController::class, 'passwordForm'])->name('password.form');
+    Route::patch('password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('password.update');
 
     Route::prefix('app/logbook')->group(function () {
         Route::get('tambah', [LogbookController::class, 'tambahForm'])->name('logbook.tambah');
@@ -25,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('{date_schedule}/hapus', [LogbookController::class, 'hapus'])->name('logbook.hapus');
         Route::patch('{date_schedule}/status/{status}/', [LogbookController::class, 'updateStatus'])->name('logbook.status');
 
-        Route::patch('catatan/{note}', [LogbookController::class, 'updateCatatan'])->name('logbook.catatan');
+        Route::patch('catatan/{dateSchedule}', [LogbookController::class, 'updateCatatan'])->name('logbook.catatan');
         Route::delete('tugas/{task}/hapus', [LogbookController::class, 'hapusTugas'])->name('logbook.tugas.hapus');
 
         Route::get('{date_schedule}', [LogbookController::class, 'index'])->name('logbook');

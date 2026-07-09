@@ -30,12 +30,12 @@
     <div class="card mb-6">
         <div class="card-header">Catatan</div>
         <div class="card-body">
-            <form method="POST" action="{{ route('logbook.catatan', $dataLogbook->note->id) }}">
+            <form method="POST" action="{{ route('logbook.catatan', $dataLogbook->id) }}">
                 @csrf
                 @method('PATCH')
                 <div class="mb-2">
                     <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan"
-                        rows="3" @if (!$isAllowed) disabled @endif>{{ $dataLogbook->note->note }}</textarea>
+                        rows="3" @if (!$isAllowed) disabled @endif>{{ $dataLogbook->note }}</textarea>
                     @error('catatan')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

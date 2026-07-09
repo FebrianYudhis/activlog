@@ -180,7 +180,7 @@
 
                 <div style="margin-top: 10px;">
                     <strong>Catatan</strong>
-                    <div class="note">{{ $item->note->note ?? '-' }}</div>
+                    <div class="note">{{ $item->note ?? '-' }}</div>
                 </div>
             </div>
         </div>

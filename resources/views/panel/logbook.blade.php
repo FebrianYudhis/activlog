@@ -35,7 +35,7 @@
             </ul>
         </div>
         <div class="card-footer text-body-secondary">
-            <span class="badge text-bg-info wrap-badge">{{ $dataDetail->note->note }}</span>
+            <span class="badge text-bg-info wrap-badge">{{ $dataDetail->note }}</span>
         </div>
     </div>
     <div class="card mt-4">

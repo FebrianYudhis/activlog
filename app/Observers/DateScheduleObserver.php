@@ -11,10 +11,12 @@ class DateScheduleObserver
      */
     public function created(DateSchedule $dateSchedule): void
     {
-        Note::create([
-            'date_schedule_id' => $dateSchedule->id,
-            'note' => '-',
-        ]);
+        // Note is now a column in date_schedules. 
+        // We can let it be null or set it to '-' when creating the DateSchedule directly.
+        // If we want a strict default '-', we can set it here:
+        if (is_null($dateSchedule->note)) {
+            $dateSchedule->updateQuietly(['note' => '-']);
+        }
     }
 
     /**

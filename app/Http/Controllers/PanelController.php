@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{DateSchedule, User};
+use App\Http\Requests\PanelDownloadRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,12 +15,18 @@ class PanelController extends Controller
     {
         $data = [
             'judul' => 'Panel Admin',
-            'permintaanHapusLogbook' => DateSchedule::whereNotNull('is_invalid')->with('user', 'schedule')->get(),
-            'belumDiperiksaLogbook' => DateSchedule::whereNull('is_invalid')->whereNull('is_checked')->with('user', 'schedule')->get(),
         ];
 
         if ($request->ajax()) {
-            $query = DateSchedule::whereNull('is_invalid')->whereNotNull('is_checked')->with('user', 'schedule');
+            $type = $request->query('type');
+
+            if ($type === 'invalid') {
+                $query = DateSchedule::invalid()->with('user', 'schedule');
+            } elseif ($type === 'unchecked') {
+                $query = DateSchedule::valid()->unchecked()->with('user', 'schedule');
+            } else {
+                $query = DateSchedule::valid()->checked()->with('user', 'schedule');
+            }
 
             return DataTables::of($query)
                 ->addColumn('aksi', function ($data) {
@@ -37,7 +44,7 @@ class PanelController extends Controller
     {
         $data = [
             'judul' => 'Detail Logbook',
-            'dataDetail' => DateSchedule::with('user', 'schedule', 'tasks', 'note')->where('id', $dateSchedule->id)->first(),
+            'dataDetail' => DateSchedule::with('user', 'schedule', 'tasks')->where('id', $dateSchedule->id)->first(),
         ];
 
         $title = 'Hapus Data !';
@@ -75,18 +82,14 @@ class PanelController extends Controller
         return view('panel.download', $data);
     }
 
-    public function downloadData(Request $request)
+    public function downloadData(PanelDownloadRequest $request)
     {
-        $validated = $request->validate([
-            'tanggalAwal' => ['required', 'date'],
-            'tanggalAkhir' => ['required', 'date', 'after_or_equal:tanggalAwal'],
-            'pengguna' => ['required', 'exists:users,id'],
-        ]);
+        $validated = $request->validated();
 
         $data = DateSchedule::where('user_id', $validated['pengguna'])
             ->whereBetween('date', [$validated['tanggalAwal'], $validated['tanggalAkhir']])
-            ->whereNotNull('is_checked')
-            ->with('tasks', 'note', 'user', 'schedule')
+            ->checked()
+            ->with('tasks', 'user', 'schedule')
             ->orderBy('date')
             ->get();
 

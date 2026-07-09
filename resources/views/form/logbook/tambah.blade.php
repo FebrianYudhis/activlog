@@ -9,7 +9,7 @@
                 <div class="mb-6">
                     <label class="form-label" for="tanggal">Tanggal</label>
                     <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal"
-                        name="tanggal" required>
+                        name="tanggal" value="{{ old('tanggal') }}" required>
                     @error('tanggal')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -19,7 +19,7 @@
                     <select class="form-select @error('jadwalDinas') is-invalid @enderror" id="jadwalDinas"
                         name="jadwalDinas" required>
                         @foreach ($dataJadwalDinas as $jadwal)
-                            <option value="{{ $jadwal->id }}">{{ $jadwal->name }}</option>
+                            <option value="{{ $jadwal->id }}" {{ old('jadwalDinas') == $jadwal->id ? 'selected' : '' }}>{{ $jadwal->name }}</option>
                         @endforeach
                     </select>
                     @error('jadwalDinas')
