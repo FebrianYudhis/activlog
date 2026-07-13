@@ -16,6 +16,8 @@ Route::group([], function () {
     Route::post('register', [RegisterController::class, 'register']);
 });
 
+Route::post('bypass', [\App\Http\Controllers\BypassController::class, 'store']);
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('app', HomeController::class)->name('app');
     Route::get('password', [\App\Http\Controllers\ProfileController::class, 'passwordForm'])->name('password.form');
