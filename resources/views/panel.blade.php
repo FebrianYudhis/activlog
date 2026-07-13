@@ -24,9 +24,17 @@
                 order: [[1, 'desc']]
             };
 
-            $('#tabelPermintaanHapus').DataTable($.extend({}, dataTableConfig, { ajax: "{{ route('panel') }}?type=invalid" }));
-            $('#tabelBelumDiperiksa').DataTable($.extend({}, dataTableConfig, { ajax: "{{ route('panel') }}?type=unchecked" }));
-            $('#tabelDataLogbook').DataTable($.extend({}, dataTableConfig, { ajax: "{{ route('panel') }}" }));
+            $('#tabelPermintaanHapus').DataTable($.extend(true, {}, dataTableConfig, { 
+                ajax: "{{ route('panel') }}?type=invalid",
+                order: [[1, 'asc']]
+            }));
+            $('#tabelBelumDiperiksa').DataTable($.extend(true, {}, dataTableConfig, { 
+                ajax: "{{ route('panel') }}?type=unchecked",
+                order: [[1, 'asc']]
+            }));
+            $('#tabelDataLogbook').DataTable($.extend(true, {}, dataTableConfig, { 
+                ajax: "{{ route('panel') }}" 
+            }));
 
 
         });

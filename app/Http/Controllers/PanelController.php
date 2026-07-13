@@ -44,7 +44,9 @@ class PanelController extends Controller
     {
         $data = [
             'judul' => 'Detail Logbook',
-            'dataDetail' => DateSchedule::with('user', 'schedule', 'tasks')->where('id', $dateSchedule->id)->first(),
+            'dataDetail' => DateSchedule::with(['user', 'schedule', 'tasks' => function($query) {
+                $query->orderBy('time', 'asc');
+            }])->where('id', $dateSchedule->id)->first(),
         ];
 
         $title = 'Hapus Data !';

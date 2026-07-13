@@ -5,6 +5,13 @@ Semua perubahan penting pada proyek ini akan didokumentasikan di file ini.
 Format ini didasarkan pada [Keep a Changelog](https://keepachangelog.com/id/1.1.0/),
 dan proyek ini mematuhi [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1]
+### Fixed
+- Menghapus tautan ganda "Ganti Password" dari navbar utama.
+- Memperbaiki urutan daftar permintaan hapus data logbook dan logbook belum diperiksa pada panel admin agar menampilkan data terlama terlebih dahulu (ascending).
+- Memperbaiki format tampilan tanggal pada detail logbook di panel admin agar tidak menyertakan waktu (00:00:00).
+- Memperbaiki urutan daftar aktivitas (task) pada detail logbook agar diurutkan berdasarkan waktu secara *ascending* (dari awal hingga terbaru).
+
 ## [2.0.0]
 ### Added
 - Fitur Ganti Password untuk pengguna.

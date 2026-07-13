@@ -23,7 +23,7 @@
         <div class="card-body">
             <div class="alert alert-primary" role="alert">
                 Dinas <span class="fst-italic fw-bold">{{ $dataDetail->schedule->name }}</span> Tanggal <span
-                    class="fst-italic fw-bold">{{ $dataDetail->date }}</span>
+                    class="fst-italic fw-bold">{{ \Carbon\Carbon::parse($dataDetail->date)->format('Y-m-d') }}</span>
             </div>
             <ul class="list-group">
                 @foreach ($dataDetail->tasks as $item)

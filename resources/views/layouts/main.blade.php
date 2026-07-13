@@ -30,7 +30,6 @@
                         <div class="navbar-nav align-items-center me-auto">
                             <div class="nav-item d-flex align-items-center">
                                 <a href="{{ route('app') }}" class="me-3">Beranda</a>
-                                <a href="{{ route('password.form') }}" class="me-3">Ganti Password</a>
                             </div>
                         </div>
                         <ul class="navbar-nav flex-row align-items-center ms-md-auto">
@@ -62,7 +61,7 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('password.form') }}">
-                                            <i class="bx bx-cog me-2"></i><span class="align-middle">Ganti Password</span>
+                                            <i class="bx bx-lock-alt me-2"></i><span class="align-middle">Ganti Password</span>
                                         </a>
                                     </li>
                                     <li>
